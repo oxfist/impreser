@@ -1,0 +1,11 @@
+app/
+nbproject/
+web/
+vendor/
+composer.phar
+*.swp
+*~
+.idea/
+*.bad
+*.log
+*_backup/
