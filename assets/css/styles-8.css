@@ -829,27 +829,49 @@ a:focus,
     line-height:150px;
     font-size:48px;
     color:#fff;
-    background: #F75443;
+    /*background: #F75443;*/
     border:1px solid #F75443;
     border-radius:50%;
     box-shadow:0 0 0 0 rgba(0,0,0,0.0);
+    margin-bottom:40px;
+    /*-webkit-transition:all .3s ease-out;*/
+    /*transition:all .3s ease-out;*/
+}
+
+.services .icon-img {
+    position: relative;
+    width:150px;
+    height:150px;
+    margin:0 auto;
+    text-align:center;
+    line-height:150px;
+    font-size:48px;
+    border:1px solid #F75443;
+    border-radius: 50%;
     margin-bottom:40px;
     -webkit-transition:all .3s ease-out;
     transition:all .3s ease-out;
 }
 
-.services .item:hover .icon {
-    color:#F75443;
-    background: #fff;
-    border:1px solid #ddd;
-}
-
-.services .item:hover [class*=fa]{
+.services .icon-img:hover {
     -webkit-transform:scale(1.2);
     transform:scale(1.2);
     -webkit-transition:all .3s ease-out;
     transition:all .3s ease-out;
 }
+
+/*.services .item:hover .icon {*/
+    /*color:#F75443;*/
+    /*background: #fff;*/
+    /*border:1px solid #ddd;*/
+/*}*/
+
+/*.services .item:hover [class*=fa]{*/
+    /*-webkit-transform:scale(1.2);*/
+    /*transform:scale(1.2);*/
+    /*-webkit-transition:all .3s ease-out;*/
+    /*transition:all .3s ease-out;*/
+/*}*/
 
 .services h3 {
     font-size:21px;
