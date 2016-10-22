@@ -2526,7 +2526,7 @@ a:focus,
         border:3px solid #fff;
         margin:0 20px 0; 
         padding:10px 20px;
-        font-size:32px;
+        font-size:26px;
         line-height:44px;
     }
 
@@ -2708,3 +2708,7 @@ a:focus,
     }
     
 }	
+
+.btn {
+    white-space: normal;
+}
