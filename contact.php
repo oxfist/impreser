@@ -1,56 +1,56 @@
 <?php 
-$emailTo = 'mail@example.com';
-$siteTitle = 'Your Site Title';
+$emailTo = 'andres.caro.q@gmail.com';
+$siteTitle = 'Impreser';
 
 error_reporting(E_ALL ^ E_NOTICE); // hide all basic notices from PHP
 
 //If the form is submitted
-if(isset($_POST['submitted'])) {
+if (isset($_POST['submitted'])) {
 	
 	// require a name from user
-	if(trim($_POST['contactName']) === '') {
-		$nameError =  'Forgot your name!'; 
+	if (trim($_POST['contactName']) === '') {
+		$nameError = '¡Olvidaste tu nombre!';
 		$hasError = true;
 	} else {
-		$name = trim($_POST['contactName']);
+		$name = strip_tags(trim($_POST['contactName']));
 	}
 	
 	// need valid email
-	if(trim($_POST['email']) === '')  {
-		$emailError = 'Forgot to enter in your e-mail address.';
+	if (trim($_POST['email']) === '')  {
+		$emailError = 'Olvidaste ingresar tu dirección de email.';
 		$hasError = true;
 	} else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", trim($_POST['email']))) {
-		$emailError = 'You entered an invalid email address.';
+		$emailError = 'Ingresaste una dirección de email inválida.';
 		$hasError = true;
 	} else {
-		$email = trim($_POST['email']);
+		$email = strip_tags(trim($_POST['email']));
 	}
 		
 	// we need at least some content
-	if(trim($_POST['comments']) === '') {
-		$commentError = 'You forgot to enter a message!';
+	if (trim($_POST['comments']) === '') {
+		$commentError = '¡Olvidaste ingresar un mensaje!';
 		$hasError = true;
 	} else {
-		if(function_exists('stripslashes')) {
+		if (function_exists('stripslashes')) {
 			$comments = stripslashes(trim($_POST['comments']));
 		} else {
-			$comments = trim($_POST['comments']);
+			$comments = strip_tags(trim($_POST['comments']));
 		}
 	}
 		
 	// upon no failure errors let's email now!
-	if(!isset($hasError)) {
+	if (!isset($hasError)) {
 		
-		$subject = 'New message to '.$siteTitle.' from '.$name;
+		$subject = 'Nuevo mensaje para '.$siteTitle.' de '.$name;
 		$sendCopy = trim($_POST['sendCopy']);
-		$body = "Name: $name \n\nEmail: $email \n\nMessage: $comments";
+		$body = "Nombre: $name \n\nEmail: $email \n\nMensaje: $comments";
 		$headers = 'From: ' .' <'.$email.'>' . "\r\n" . 'Reply-To: ' . $email;
 
 		mail($emailTo, $subject, $body, $headers);
 		
         //Autorespond
-		$respondSubject = 'Thank you for contacting '.$siteTitle;
-		$respondBody = "Your message to $siteTitle has been delivered! \n\nWe will answer back as soon as possible.";
+		$respondSubject = 'Gracias por contactar a '.$siteTitle;
+		$respondBody = "¡Tu mensaje a $siteTitle ha sido entregado! \n\nTe responderemos lo antes posible.";
 		$respondHeaders = 'From: ' .' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $emailTo;
 		
 		mail($email, $respondSubject, $respondBody, $respondHeaders);
