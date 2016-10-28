@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('#contact-form').submit(function() {
 		
-		if($('#contact-form').hasClass('clicked')){
+		if ($('#contact-form').hasClass('clicked')) {
 			return false;
 		}
 		
@@ -16,14 +16,14 @@ $(document).ready(function() {
 		$('#contact-form .error-message').remove();
 		
 		$('.requiredField').each(function() {
-			if($.trim($(this).val()) == '') {
+			if ($.trim($(this).val()) == '') {
 				var errorText = $(this).data('error-empty');
 				$(this).parents('.controls').append('<span class="error-message" style="display:none;">'+errorText+'.</span>').find('.error-message').fadeIn('fast');
 				$(this).addClass('inputError');
 				hasError = true;
-			} else if($(this).is("input[type='email']") || $(this).attr('name')==='email') {
+			} else if ($(this).is("input[type='email']") || $(this).attr('name')==='email') {
 				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-				if(!emailReg.test($.trim($(this).val()))) {
+				if (!emailReg.test($.trim($(this).val()))) {
 					var invalidEmail = $(this).data('error-invalid');
 					$(this).parents('.controls').append('<span class="error-message" style="display:none;">'+invalidEmail+'.</span>').find('.error-message').fadeIn('fast');
 					$(this).addClass('inputError');
@@ -32,7 +32,7 @@ $(document).ready(function() {
 			}
 		});
 		
-		if(hasError) {
+		if (hasError) {
 			$('#contact-form button').html('<i class="fa fa-times"></i>'+errorMessage);
 			setTimeout(function(){
 				$('#contact-form button').html(buttonCopy);
@@ -43,9 +43,9 @@ $(document).ready(function() {
 			$('#contact-form button').html('<i class="fa fa-spinner fa-spin"></i>'+sendingMessage);
 			
 			var formInput = $(this).serialize();
-			$.post($(this).attr('action'),formInput, function(data){
+			$.post($(this).attr('action'),formInput, function(data) {
 				$('#contact-form button').html('<i class="fa fa-check"></i>'+okMessage);
-				setTimeout(function(){
+				setTimeout(function() {
 					$('#contact-form button').html(buttonCopy);
 				$('#contact-form').removeClass('clicked');
 				},2000);
