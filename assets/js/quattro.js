@@ -270,85 +270,85 @@ $(document).ready(function() {
 	Google Map
 	==============================================*/
 	
-	$(window).load(function(){
-	
-		if($('#gmap').length){
-		
-		
-			var map;
-			var mapstyles = [ { "stylers": [ { "saturation": -100 } ] } ];
-			
-			var infoWindow = new google.maps.InfoWindow;
-			
-			var pointLatLng = new google.maps.LatLng(mapPoint.lat, mapPoint.lng);
-
-			var isDraggable = $('html').is('.touch') ? false : true; // If document (your website) is wider than
-			
-			var mapOptions = {
-				zoom: mapPoint.zoom,
-				center: pointLatLng,
-				zoomControl : true,
-				zoomControlOptions: {
-					style: google.maps.ZoomControlStyle.LARGE,
-					position: google.maps.ControlPosition.LEFT_CENTER
-				},
-				panControl : false,
-				streetViewControl : false,
-				mapTypeControl: false,
-				overviewMapControl: false,
-				scrollwheel: false,
-				draggable:isDraggable,
-				styles: mapstyles
-			}
-			
-			map = new google.maps.Map(document.getElementById("gmap"), mapOptions);
-			
-			var marker = new google.maps.Marker({
-				position: pointLatLng, 
-				map: map, 
-				title:mapPoint.linkText,
-				icon: mapPoint.icon
-			});
-			
-			var mapLink = 'https://www.google.com/maps/preview?ll='+mapPoint.lat+','+mapPoint.lng+'&z=14&q='+mapPoint.mapAddress;
-			
-			var html = '<div class="infowin">'
-					+ mapPoint.infoText
-					+ '<a href="'+mapLink+'" target="_blank">'+mapPoint.linkText+'</a>'
-					+ '</div>';
-
-			google.maps.event.addListener(marker, 'mouseover', function() {
-				infoWindow.setContent(html);
-				infoWindow.open(map, marker);
-			});
-
-			google.maps.event.addListener(marker, 'click', function() {
-				window.open(mapLink,'_blank');
-			});
-			
-			/*Toggle Map*/
-			
-			$('#toggle-map').click(function(){
-		  
-				if($('#contact').is('.show-map')){
-
-					$('#contact').css({'height':'auto'});
-					$('#contact .container,#gmap-overlay').fadeIn();
-					
-				}else{
-				
-					$('#contact').height($('#contact').height());
-					$('#contact .container,#gmap-overlay').fadeOut();
-				}
-
-				$('#contact').toggleClass('show-map');
-				$('.show-map-text,.hide-map-text').toggle();
-			})
-			
-			$("<div id='gmap-overlay'></div>").prependTo($('#gmap'));
-		}
-		
-	});		
+//	$(window).load(function(){
+//
+//		if($('#gmap').length){
+//
+//
+//			var map;
+//			var mapstyles = [ { "stylers": [ { "saturation": -100 } ] } ];
+//
+//			var infoWindow = new google.maps.InfoWindow;
+//
+//			var pointLatLng = new google.maps.LatLng(mapPoint.lat, mapPoint.lng);
+//
+//			var isDraggable = $('html').is('.touch') ? false : true; // If document (your website) is wider than
+//
+//			var mapOptions = {
+//				zoom: mapPoint.zoom,
+//				center: pointLatLng,
+//				zoomControl : true,
+//				zoomControlOptions: {
+//					style: google.maps.ZoomControlStyle.LARGE,
+//					position: google.maps.ControlPosition.LEFT_CENTER
+//				},
+//				panControl : false,
+//				streetViewControl : false,
+//				mapTypeControl: false,
+//				overviewMapControl: false,
+//				scrollwheel: false,
+//				draggable:isDraggable,
+//				styles: mapstyles
+//			}
+//
+//			map = new google.maps.Map(document.getElementById("gmap"), mapOptions);
+//
+//			var marker = new google.maps.Marker({
+//				position: pointLatLng,
+//				map: map,
+//				title:mapPoint.linkText,
+//				icon: mapPoint.icon
+//			});
+//
+//			var mapLink = 'https://www.google.com/maps/preview?ll='+mapPoint.lat+','+mapPoint.lng+'&z=14&q='+mapPoint.mapAddress;
+//
+//			var html = '<div class="infowin">'
+//					+ mapPoint.infoText
+//					+ '<a href="'+mapLink+'" target="_blank">'+mapPoint.linkText+'</a>'
+//					+ '</div>';
+//
+//			google.maps.event.addListener(marker, 'mouseover', function() {
+//				infoWindow.setContent(html);
+//				infoWindow.open(map, marker);
+//			});
+//
+//			google.maps.event.addListener(marker, 'click', function() {
+//				window.open(mapLink,'_blank');
+//			});
+//
+//			/*Toggle Map*/
+//
+//			$('#toggle-map').click(function(){
+//
+//				if($('#contact').is('.show-map')){
+//
+//					$('#contact').css({'height':'auto'});
+//					$('#contact .container,#gmap-overlay').fadeIn();
+//
+//				}else{
+//
+//					$('#contact').height($('#contact').height());
+//					$('#contact .container,#gmap-overlay').fadeOut();
+//				}
+//
+//				$('#contact').toggleClass('show-map');
+//				$('.show-map-text,.hide-map-text').toggle();
+//			})
+//
+//			$("<div id='gmap-overlay'></div>").prependTo($('#gmap'));
+//		}
+//
+//	});
 	/*============================================
 	Tooltips
 	==============================================*/
