@@ -1181,7 +1181,7 @@ a:focus,
     color:#fff;
     top:50%;
     margin:0;
-    margin-top:-50px;
+    margin-top:-25px;
     padding:10px;
     font-size:26px;
     line-height:34px;
@@ -1260,7 +1260,7 @@ a:focus,
     display:none;
     position: relative;
     max-width: 940px;
-    margin:80px auto 60px;
+    margin:80px auto 100px;
     font-weight: 400;
     opacity:0;
     letter-spacing: 0.02em;
