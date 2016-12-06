@@ -1,5 +1,5 @@
 <?php
-$emailTo = 'andres.caro.q@gmail.com';
+$emailTo = 'impreser.s.a@gmail.com';
 $siteTitle = 'Impreser';
 
 error_reporting(E_ALL ^ E_NOTICE); // hide all basic notices from PHP
@@ -19,7 +19,7 @@ if (isset($_POST['submitted'])) {
     if (trim($_POST['email']) === '')  {
         $emailError = 'Olvidaste ingresar tu dirección de email.';
         $hasError = true;
-    } else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", trim($_POST['email']))) {
+    } else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\\.[a-z]{2,4}$/i", trim($_POST['email']))) {
         $emailError = 'Ingresaste una dirección de email inválida.';
         $hasError = true;
     } else {
@@ -32,7 +32,7 @@ if (isset($_POST['submitted'])) {
         $hasError = true;
     } else {
         if (function_exists('stripslashes')) {
-            $comments = stripslashes(trim($_POST['comments']));
+            $comments = stripslashes(strip_tags(trim($_POST['comments'])));
         } else {
             $comments = strip_tags(trim($_POST['comments']));
         }
@@ -42,16 +42,18 @@ if (isset($_POST['submitted'])) {
     if (!isset($hasError)) {
 
         $subject = 'Nuevo mensaje para '.$siteTitle.' de '.$name;
-        $sendCopy = trim($_POST['sendCopy']);
-        $body = "Nombre: $name \n\nEmail: $email \n\nMensaje: $comments";
-        $headers = 'From: ' .' <'.$email.'>' . "\r\n" . 'Reply-To: ' . $email;
+        //$sendCopy = trim($_POST['sendCopy']);
+        $body = "Nombre: ${name} \n\nEmail: ${email} \n\nMensaje: ${comments}";
+        $headers = 'From: ' .' <'.$email.'>' . "\r\n" . 'Reply-To: ' . $email . "\r\n";
+        $headers .= 'X-Mailer: PHP/' . phpversion();
 
         mail($emailTo, $subject, $body, $headers);
 
         //Autorespond
         $respondSubject = 'Gracias por contactar a '.$siteTitle;
-        $respondBody = "¡Tu mensaje a $siteTitle ha sido entregado! \n\nTe responderemos lo antes posible.";
-        $respondHeaders = 'From: ' .' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $emailTo;
+        $respondBody = "¡Tu mensaje a ${siteTitle} ha sido entregado! \n\nTe responderemos lo antes posible.";
+        $respondHeaders = 'From: ' .' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $emailTo  . "\r\n";
+        $respondHeaders .= 'X-Mailer: PHP/' . phpversion();
 
         mail($email, $respondSubject, $respondBody, $respondHeaders);
 
