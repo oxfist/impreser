@@ -2,6 +2,7 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.html [L]
+RewriteRule respaldo/ index.html [L]
 RewriteRule \.git index.html [L]
 RewriteRule \.idea index.html [L]
 RewriteRule composer.json index.html [L]
